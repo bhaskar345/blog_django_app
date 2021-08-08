@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%block content%}{%endblock%}
+{%block body%}
+<div class="my-2">
+    <H2>Send Post By Mail..</H2>
+    {%if sent%}
+<h1>{{send}}</h1>
+<a href="/" class="btn btn-primary btn-lg">Home</a>
+
+{%else%}
+<form action="" method="post">
+    {{form.as_p}}
+{%csrf_token%}
+    <button type="submit" class="btn btn-success btn-lg">Send</button>
+    <a href="/" class="btn btn-primary btn-lg">Home</a>
+</form>
+{%endif%}
+</div>
+{%endblock%}

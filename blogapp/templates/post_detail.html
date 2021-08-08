@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{%block content%}{%endblock%}
+{%block body%}
+<div class="container">
+    <h1>{{post.title}}</h1>
+<div class="container">
+    <div class="card" style="width: 58rem;">
+        <div class="card-body">
+            <h5>{{post.title}}</h5>
+            <p class="card-text">Published By: <a href="{{post.get_absolute_url}}">{{post.author|title}}</a></p>
+            <p class="card-text">{{post.body}}</p>
+            <a href="/mail/{{post.id}}" class="btn btn-primary btn-lg">Share by Mail</a>
+            <a href="/" class="btn btn-primary btn-lg">Home</a>
+        </div>
+    </div>
+</div>
+<div class="container my-2">
+    {%if csubmit%}
+<h2>Your comment is added successfully</h2>
+{%else%}
+<h2>Your comment is usefull for us!!</h2>
+{%endif%}
+    <form method="post">
+        {{form.as_p}}
+        {%csrf_token%}
+        <button type="submit" class="btn btn-primary btn-lg">Add Comment</button>
+    </form>
+</div>
+<div style="background:black;color:white; border-radius:4px" class="my-2 px-2 py-2">
+    {%with comments.count as c_count%}
+<h2>{{c_count}} comment{{c_count|pluralize}}</h2>
+{%endwith%}
+{%if comments%}
+{%for c in comments%}
+<h5>comment {{forloop.count}} by {{c.name}} on {{c.created}}</h5>
+<div class="btn btn-info btn-sm">
+    {{c.body|linebreaks}}
+</div>
+{%endfor%}
+{%else%}
+<p>There is no comment yet</p>
+{%endif%}
+</div>
+
+</div>
+{%endblock%}
