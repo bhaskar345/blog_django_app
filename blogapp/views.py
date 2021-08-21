@@ -53,7 +53,7 @@ def mail_view(request,id):
         post=get_object_or_404(Post,pk=id)
         form=Mailform(request.POST)
         if form.is_valid:
-            yag = yagmail.SMTP(user='bhaskarabcchauhan@gmail.com', password='fpqxugswlsgmmuur')
+            yag = yagmail.SMTP(user='your email', password='your password')
             to=request.POST['to']
             name=request.POST['name']           
             subject='{} recommends you to read {}'.format(name,post.title)
